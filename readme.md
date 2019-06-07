@@ -1,175 +1,106 @@
-## Requirements
+![picture](boilerplate-includes/core/images/beta.png)
+# Frontend Boilerplate
 
-Your database **should** be the exact copy of the production.
+Minimalist and ready to use frontEnd HTML5/CSS/JS Boilerplate for creating new web projects.
 
-Export using command line :
+![picture](boilerplate-includes/core/images/screenshot.png)
 
-- Export : `mysqldump -u` USER `-p` DB_NAME `-r utf8.dump.sql --default-character-set=utf8mb4`
-- Import : `mysql -u` USER `-p --default-character-set=utf8mb4` DB_NAME `< utf8.dump.sql`
+# Getting Started
 
-Alternatives :
+These instructions will help you run the project on a live system or on your local machine for 
+development and testing purposes.
 
-- [PhpMyAdmin](https://www.phpmyadmin.net/)
-- [WP Migrate DB](https://fr.wordpress.org/plugins/wp-migrate-db/)
+## Dependencies
 
-#### The project has been set up using these versions :
+First, make sure these are installed on your machine :
 
-- **PHP** : 7.2.1
-- **MySql** : 5.7
-- **Yarn** : 1.6.0
-- **Node** : 9.11.1
-- **Gulp** : 3.9.1
+- [Node.js](http://nodejs.org) 10.15.1
+- [NPM](https://www.npmjs.com/) 6.4.1
+- [Yarn](https://yarnpkg.com/) 1.13.0
 
-## Frontend Boilerplate Documentation
+## Quick start
 
-[Read full documentation](./gulp-includes/core/doc/readme.md)
+In bash/terminal/command line, `cd` into your project directory.
 
-## Installation
+1. Clone this repo or download zip.
+2. Run `yarn install` to install required files. (Add --no-bin-links if on VirtualBox.)
+3. When it's done installing, run one of the task runners to get going :
+	- `yarn run boilerplate [--dev]` manually compiles HTML/CSS/JS files.
+    - `yarn run boilerplate watch [--dev] [--reload]` automatically compiles HTML/CSS/JS and spies on files changes.
+	
+Consider using the `--dev` option for development and testing purposes **only**.
 
-#### CD into your project folder and clone this repo (or download as .zip) :
+If you have any issue with `yarn install` on Windows, run the CLI as administrator and execute the following command :
+`npm install -g --production windows-build-tools && npm rebuild`. Then close & open the CLI and try again.
 
-- `cd folder/my-folder/`
-- `git clone GIT_URL_HERE .`
+:+1: :rocket: :+1: :rocket: :+1: :rocket: :+1: :rocket: :+1: :rocket: :+1: :rocket: :+1:
 
-#### Run the following commands :
+# Configuration
 
-- `yarn install` : Installs frontend-boilerplate's dependencies (add --no-bin-links if on VirtualBox)
-- `gulp favicon` : Generates all favicon files
-- `gulp` : Generates theme's assets (CSS, JS) and .gitignore based on generated assets.
-- `php wp-cli.phar cli update --stable --yes` : Update WP-CLI
+Everything you need is in *boilerplate-includes/frontendboilerplate-configuration.js*.
 
-**Install WordPress files**
+# Documentation
 
-- `php wp-cli.phar core download --path=./public_html/ --locale=fr_FR --version=latest --skip-content --allow-root`
+`yarn run boilerplate [--dev]` : Builds HTML/CSS/JS files and checks code.
 
-**Generate configuration file**
+`yarn run boilerplate watch [--dev] [--reload]` : Builds HTML/CSS/JS files, checks code and spies on files changes.
 
-- `php wp-cli.phar config create --dbname=`YOUR_DB_NAME `--dbuser=`YOUR_DB_USER `--dbhost=`YOUR_DB_HOST `--dbprefix=jmwjf_ --skip-check --path=./public_html/ --prompt=dbpass --allow-root`
+---
 
-**Install languages**
+`yarn run boilerplate check-js` : Checks JavaScript syntax.
 
-- `php wp-cli.phar language core install fr_FR --activate --path=./public_html/ --allow-root`
+`yarn run boilerplate check-scss` : Checks Scss syntax.
 
-#### Manually replace tokens in wp-config.php :
+`yarn run boilerplate javascript [--dev]` : Builds JavaScript code.
 
-```php
-define( 'AUTH_KEY',         'Kjh<4zfA<>KZ)s7O/&T&6eI-po^[%@^dI%-r8$^l5O5I.$&C|{BdetJn9YJY?2Wm' );
-define( 'SECURE_AUTH_KEY',  '=z+j=J+3}Os*9JwvYBn$wAWR.!&M>?^6_pt,HAj>~z_0=og/mfe]u|=&A_C1v`X-' );
-define( 'LOGGED_IN_KEY',    '{VzSc) tk(R0R0iNS*M~4w;~5 g_f~q/R@=:s % L&we=n.*gQBA@cVKc2HEu==6' );
-define( 'NONCE_KEY',        'a;y*H4cmZ1Bbdm OBE5nQUt((jfc]GU*{j3e5IF/R@DHFNo72@G1D)T#+I%i0m. ' );
-define( 'AUTH_SALT',        'I>Dp$B}1h3r+_Q8#GA$I}1l+yY<91q!Kpq9P:, 6k*CpX7cG`Rg6<RN!(8kxz:x{' );
-define( 'SECURE_AUTH_SALT', '9k[$NdW-)dU)$):g{jk#*[w@ng*4[@qOSOyD[qldXO<z{]T{B-LNF)(Q~P]qF}8-' );
-define( 'LOGGED_IN_SALT',   'd~V$Pa$m?VeLAama{o?uq&Yjrf7u?M2@<P6%E|vN&/L#V%IW)wRURO:qR^}ql/G)' );
-define( 'NONCE_SALT',       '*g~P6@v/>&q##;/<:w157nI!R-.^5`gh0g]n++-i8yL Ey>g/L)xs-s@FkE}_H)+' );
-```
+`yarn run boilerplate css [--dev]` : Builds CSS stylesheets.
 
-### Run the following commands :
+`yarn run boilerplate html [--dev]` : Builds html templates and perform W3C validation.
 
-#### Define global constants in wp-config.php
+`yarn run boilerplate gitignore` : Builds custom .gitignore according to *boilerplate-includes/.gitignore*.
 
-- `php wp-cli.phar config set WP_DEBUG true --raw --type=constant --path=./public_html/ --allow-root` for develop evironment
+---
 
-#### Replace old URLS
+`yarn run boilerplate imagemin [--lossless]` : Optimises .jpg .jpeg .png .gif .svg .webp images.
 
-- `php wp-cli.phar search-replace` /absolute/path/to/old/root /absolute/path/to/new/root `--precise --path=./public_html/ --allow-root`
-- `php wp-cli.phar search-replace` old-url.com new-url.com `--precise --path=./public_html/ --allow-root`
+`yarn run boilerplate favicon [--skip-prompt] [--dev]` : Creates and attach favicon files.
 
-#### Install plugins
+---
 
-- `php wp-cli.phar plugin install advanced-custom-fields --version=5.6.9 --activate --path=./public_html/ --allow-root` replaced by `ACF pro`
-- `php wp-cli.phar plugin install wordpress-seo --activate --path=./public_html/ --allow-root`
-- `php wp-cli.phar plugin install $(<plugin-slugs.txt) --path=./public_html/ --allow-root`
-- `php wp-cli.phar plugin install --activate $(<plugin-slugs.txt) --path=./public_html/ --allow-root`
+`yarn run boilerplate clean` : Erases generated assets.
 
-#### Update everything
+##### External stuffs
 
-- `php wp-cli.phar core update --locale=fr_FR  --path=./public_html/ --allow-root`
-- `php wp-cli.phar plugin update --all --path=./public_html/ --allow-root`
-- `php wp-cli.phar plugin-slug-name update --path=./public_html/ --allow-root`
-- `php wp-cli.phar language core update --path=./public_html/ --allow-root`
-- `php wp-cli.phar language plugin update --all --path=./public_html/ --allow-root`
+- [Use external libraries with Yarn](boilerplate-includes/core/doc/external-libraries.md)
+- [CMS/Framework Integration](boilerplate-includes/core/doc/cms-framework.md)
+- [Modernizr features detection](boilerplate-includes/core/doc/modernizr.md)
 
-#### Database repair/optimisations
+##### Tools
 
-- `php wp-cli.phar db repair --path=./public_html/ --allow-root`
-- `php wp-cli.phar db optimize --path=./public_html/ --allow-root`
+- [SCSS custom functions, mixins, image dimensions, inline assets](boilerplate-includes/core/doc/scss-functions.md)
 
-#### Medias & Uploads
+##### Linting
 
-Download latest medias (from remote server using FTP client for example). *public_html/wp-content/uploads/*
+- [SCSS lint - How to bypass check-scss warnings](boilerplate-includes/core/doc/scss-lint.md)
+- [JSHint - How to bypass check-js warnings](boilerplate-includes/core/doc/jshint.md)
 
-#### Generate missing images sizes
+##### Javascript-based plugins
 
-- `php wp-cli.phar media regenerate --skip-delete --only-missing --yes --path=./public_html/ --allow-root`
-
-- Visit *http://website.com/wp-admin/options-permalink.php* and change permalink structure then revent to %postname%. This will regenerate the .htaccess file.
+- [Plugin: Built-in JavaScript viewport informations (boilerplate_display)](boilerplate-includes/core/doc/viewport-framework.md)
+- [Plugin: Responsive/Retina/Lazyload image](boilerplate-includes/core/doc/responsive-image-plugin.md)
+- [Plugin: Lazyload Iframe](boilerplate-includes/core/doc/lazyload-iframe.md)
+- [Plugin: Detect New Html Elements](boilerplate-includes/core/doc/detect-new-html-elements.md)
 
 # Maintenance
 
-**Update outdated NPM dependencies :**
+Update outdated NPM dependencies :
 
-`yarn upgrade-interactive --latest`
+`yarn upgrade-interactive --latest` (Add --no-bin-links if on VirtualBox.)
 
-**Update WP-CLI :**
+# Authors
 
-`php wp-cli.phar cli update --stable --yes`
+[<img src="boilerplate-includes/core/images/fidesio-logo.png" width="50px">](https://www.fidesio.com/ "Fidesio") [<img src="boilerplate-includes/core/images/hedi.png" width="50px">](mailto:hedi.benaba@fidesio.com?subject=Frontend%20Boilerplate&body=Hi,%20 "Hédi Ben Aba") [<img src="boilerplate-includes/core/images/simon.png" width="50px">](mailto:simon.lucas@fidesio.com?subject=Frontend%20Boilerplate&body=Hi,%20 "Simon Lucas")
 
-**Update WordPress :**
+# License
 
-`php wp-cli.phar core update --locale=fr_FR  --path=./public_html/  --allow-root`
-
-**Update Plugins :**
-
-`php wp-cli.phar plugin update --all --path=./public_html/ --allow-root`
-
-**Update Translations :**
-
-`php wp-cli.phar language core update --path=./public_html/ --allow-root`
-
-**Update WP-CLI Packages :**
-
-`php wp-cli.phar package update --path=./public_html/ --allow-root`
-
-**Regenerate missing images sizes :**
-
-`php wp-cli.phar media regenerate --skip-delete --only-missing --yes --path=./public_html/ --allow-root`
-
-
-## Deploys Documentation
-
-#### Init Git
-
-Connect the root folder of site and using command line :
-
-- `git init`
-- `git remote add origin GIT_URL_HERE`
-
-#### Export/Import database
-
-Export database [here](staging-site)
-- Browser login: user/pass
-- Admin login: user/pass
-- Replace URL and file path(http://prntscr.com/kisd9i)
-
-Import using command line :
-- Import : `mysql -u` USER `-p ` DB_NAME `< export-database.sql`
-
-#### Install WordPress files
-
-- `php wp-cli.phar core download --path=./public_html/ --locale=fr_FR --version=latest --skip-content --allow-root`
-
-#### Generate configuration file
-
-- `php wp-cli.phar config create --dbname=`YOUR_DB_NAME `--dbuser=`YOUR_DB_USER `--dbhost=`YOUR_DB_HOST `--dbprefix=apf_ --skip-check --path=./public_html/ --prompt=dbpass --allow-root`
-
-#### Install plugins
-
-- `php wp-cli.phar plugin install $(<plugin-slugs.txt) --path=./public_html/ --allow-root`
-
-#### Extract wp-content files
-
-Connect the root folder of site, then go to the `public_html/wp-content`  and extract `wp-content.zip` file.
-
-#### Update the permalink
-
-Go to your-site.com/wp-admin/options-permalink.php(user/pass) and click `Enregistrer les modifications`.
+Copyright (c) [Fidesio](https://www.fidesio.com/) and Contributors. All Rights Reserved.
